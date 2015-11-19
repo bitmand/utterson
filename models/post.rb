@@ -96,6 +96,12 @@ class Post
         return true
     end
 
+    def destroy
+        # FIXME: Catch IO Error
+        File.delete( @filename )
+        return self.commit
+    end
+
     def Post.get site_id, post_id
         post = Post.new
         post.load( site_id, post_id )

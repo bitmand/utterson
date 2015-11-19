@@ -1,0 +1,51 @@
+<h1 class="page-header">Are you absolute certain you want to delete this post?</h1>
+
+<div class="row">
+
+    <% if request.request_method == "POST" %>
+
+        <div class="alert alert-success" role="alert">
+            <strong>Awesome!</strong> Post was successfully deleted, should we also <a href="/deploy">deploy this change</a>?
+        </div>
+
+        <a class="btn btn-primary" href="/post/list" role="button">Continue</a>
+
+    <% else %>
+
+        <form method="post" action="/post/delete/<%= post.id %>">
+
+            <div class="col-md-8">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= post.id %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="<%= post.settings['title'] %>">
+                </div>
+
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                <a class="btn btn-default" href="/post/edit/<%= post.id %>" role="button">Cancel</a>
+
+            </div>
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label for="published">State</label>
+                    <input type="text" class="form-control" id="published" name="published" value="<% if post.settings['published'] %>Published<% else %>Unpublished<% end %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="text" class="form-control" id="date" name="date" value="<%= post.settings['date'] %>">
+                </div>
+
+            </div>
+
+        </form>
+
+    <% end %>
+
+</div>

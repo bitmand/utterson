@@ -43,4 +43,17 @@ class MisterHyde < Sinatra::Application
         erb :'post/edit', :locals => { :errors => @post.error_messages }
     end
 
+    get '/post/delete/:id' do
+        site = Site.get( session[:site_id] )
+        post = Post.get( session[:site_id], params['id'] )
+        erb :'post/delete', :locals => { :site => site, :post => post }
+    end
+
+    post '/post/delete/:id' do
+        site = Site.get( session[:site_id] )
+        post = Post.get( session[:site_id], params['id'] )
+        post.destroy
+        erb :'post/delete', :locals => { :site => site, :post => post }
+    end
+
 end
