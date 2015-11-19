@@ -33,6 +33,7 @@ Completed features at this point is:
 Upcoming features in a prioritized list:
 
  * Delete Post
+ * Rename Post
  * Git integration ( changes are committed )
  * Create new Jekyll site
  * Deploy functionality ( changes are pushed and/or `jekyll build` )
