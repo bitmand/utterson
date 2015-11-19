@@ -1,0 +1,72 @@
+<h1 class="page-header"><%= @post.id.gsub( /\.markdown$/, '') %></h1>
+
+<div class="row">
+
+    <% unless params['created'].nil? %>
+        <div class="alert alert-success" role="alert">
+            <strong>Awesome!</strong> Post was successfully created. You can keep editing or <a href="/deploy">deploy it</a>?
+        </div>
+    <% end %>
+
+    <% if request.request_method == "POST" %>
+        <% if errors.length == 0 %>
+            <div class="alert alert-success" role="alert">
+                <strong>Awesome!</strong> Post was successfully saved, should we also <a href="/deploy">deploy this change</a>?
+            </div>
+        <% else %>
+            <div class="alert alert-danger" role="alert">
+                <strong>Darn!</strong> Ran into some trouble:<br /><ul><li><%= errors.join('</li><li>') %></li></ul>
+            </div>
+        <% end %>
+    <% end %>
+
+    <form method="post" action="/post/edit/<%= @post.id %>">
+
+        <div class="col-md-8">
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title of post" value="<%= @post.settings['title'] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="15" style="font-family: Consolas, Lucida Console, monospace;"><%= @post.content %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-default" href="/post/list" role="button">Cancel</a>
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label for="published">State</label>
+                <select class="form-control" id="published" name="published">
+                    <option value="true"<% if @post.settings['published'] %> SELECTED<% end %>>Published</option>
+                    <option value="false"<% unless @post.settings['published'] %> SELECTED<% end %>>Unpublished</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" id="date" name="date" placeholder="Post date" value="<%= @post.settings['date'] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="layout">Layout</label>
+                <select class="form-control" id="layout" name="layout">
+                    <% @site.layouts.each do |layout| %>
+                        <option value="<%= layout %>"<% if layout == @post.settings['layout'] %> SELECTED<% end %>><%= layout %></option>
+                    <% end %>
+                </select>
+            </div>
+
+            <h3>Options</h3>
+            <a class="btn btn-primary" href="/post/rename/<%= @post.id %>" role="button">Rename Post</a>
+            <a class="btn btn-danger" href="/post/delete/<%= @post.id %>" role="button">Delete Post</a>
+
+        </div>
+
+    </form>
+</div>

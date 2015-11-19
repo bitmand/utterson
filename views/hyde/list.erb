@@ -1,0 +1,26 @@
+<a class="btn btn-primary pull-right" href="/hyde/new" role="button">Create Site</a>
+
+<h1 class="page-header">Jekyll websites</h1>
+
+<div class="table-responsive">
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Title</th>
+			<th>Production URL</th>
+		</tr>
+		</thead>
+		<tbody>
+			<% @sites.each do |site| %>
+			<tr>
+				<td><a href="/hyde/select?id=<%= site[0] %>"><%= site[0] %></a></td>
+				<td><%= site[1] %></td>
+				<td><a href="<%= site[2] %>"><%= site[2] %></a></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>

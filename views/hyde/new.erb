@@ -1,0 +1,27 @@
+<h1 class="page-header">Create Jekyll website</h1>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <% if request.request_method == "POST" %>
+            <% if errors.length == 0 %>
+                <div class="alert alert-success" role="alert">
+                    <strong>Awesome!</strong> Site was created successfully
+                </div>
+            <% else %>
+                <div class="alert alert-danger" role="alert">
+                    <strong>Darn! There is one or more errors:</strong><br /><ul><li><%= errors.join('</li><li>') %></li></ul>
+                </div>
+            <% end %>
+        <% end %>
+
+        <form method="post" action="/site/new">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name of website e.g. example.com or just: example">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>

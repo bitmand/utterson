@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="A Jekyll web editor">
+    <meta name="author" content="Lasse Brandt">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Mister Hyde</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="/js/bootstrap.min.js"></script>
+    <link href="/css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Mister Hyde</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/hyde/sites">Websites</a></li>
+            <!--<li><a href="/hyde/about">Settings</a></li>-->
+            <!--<li><a href="/hyde/about">About</a></li>-->
+            <!--<li><a href="/hyde/help">Help</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+          <% if session[:site_id] %>
+            <h4><%= session[:site_id] %></h4>
+            <p><%= session[:site_title] %></p>
+
+            <ul class="nav nav-sidebar">
+              <!--<li<% if request.path_info =~ /^\/page\// %> class="active"<% end %>><a href="/page/list">Pages</a></li>-->
+              <li<% if request.path_info =~ /^\/post\// %> class="active"<% end %>><a href="/post/list">Posts</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li<% if request.path_info =~ /^\/deploy\// %> class="active"<% end %>><a href="/deploy">Deploy</a></li>
+              <li<% if request.path_info =~ /^\/settings\// %> class="active"<% end %>><a href="/settings">Settings</a></li>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<%= yield %>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+
+  </body>
+</html>
+
