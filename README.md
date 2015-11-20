@@ -9,7 +9,7 @@ It's fairly simple to get started and test Mister Hyde:
     git clone git@github.com:mister-hyde/mister-hyde.git
     cd mister-hyde
     bundle install
-    rackup
+    bundle exec rackup
 
 Visit http://127.0.0.1:9292/ in your browser and you should see an empty list of Jekyll sites. Either create a new one or copy/symlink existing into `sites/` directory:
 
@@ -53,3 +53,4 @@ Please create an issue :)
 [jekyll-files]: http://jekyllrb.com/docs/static-files/
 [sinatra]:      http://www.sinatrarb.com/
 [git]:          https://git-scm.com/
+
