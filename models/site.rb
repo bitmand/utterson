@@ -8,16 +8,22 @@ class Site
     end
 
     def create
-        unless @title =~ /^[a-z0-9][a-z0-9_\-\.]+[a-z0-9]$/
-            @error_messages << ['Invalid site name. Can only use a-z 0-9 _ - . and min. 3 characters.']
+        unless @id =~ /^[a-z0-9][a-z0-9_\-\.]+[a-z0-9]$/
+            @error_messages << 'Invalid site name. Can only use a-z 0-9 _ - . and min. 3 characters.'
             return false
         end
-        # FIXME: Fix site create
-        # jekyll new sites/testhat
-        # cd sites/testhat
-        # git init
-        # git add .
-        # git commit -am "Initial commit of new site"
+        if File.exists? MisterHyde.settings.sites_dir + @id
+            @error_messages << 'Site allready exists with that name.'
+            return false
+        end
+
+        cmd = Commandline.jekyll_new( @id )
+        if cmd.error_messages.length > 0
+            @error_messages = cmd.error_messages
+            return false
+        end
+
+        return true
     end
 
     def layouts
