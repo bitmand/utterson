@@ -26,6 +26,7 @@ It does however rely on [Git][git] and at this point expects the Jekyll sites to
 
 Completed features at this point is:
 
+ * Create new Jekyll site
  * Create/Edit/Delete Posts
 
 ## Roadmap
@@ -34,7 +35,6 @@ Upcoming features in a prioritized list:
 
  * Rename Post
  * Git integration ( changes are committed )
- * Create new Jekyll site
  * Deploy functionality ( changes are pushed and/or `jekyll build` )
  * Create/Edit/Delete Pages
 
