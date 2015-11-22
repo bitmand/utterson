@@ -1,8 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'tilt/erb'
+require 'open3'
+require 'shellwords'
 
 Bundler.require(:default)
+
+# Lib
+require_relative 'lib/commandline'
 
 # Models
 require_relative 'models/site.rb'
@@ -23,7 +28,7 @@ class MisterHyde < Sinatra::Application
 	set :sites_dir, 'sites/'
 
 	before do
-		unless ['/','/hyde/sites','/hyde/new','/hyde/select'].include? request.path_info
+		unless ['/','/hyde/sites','/hyde/create','/hyde/select'].include? request.path_info
 			redirect '/hyde/sites' if session[:site_id].nil?
 		end
 	end

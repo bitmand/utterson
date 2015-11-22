@@ -12,15 +12,15 @@ class MisterHyde < Sinatra::Application
         redirect '/post/list'
     end
 
-    get '/hyde/new' do
-    	erb :'hyde/new'
+    get '/hyde/create' do
+    	erb :'hyde/create'
     end
 
-    post '/hyde/new' do
+    post '/hyde/create' do
     	site = Site.new
-    	site.title = params['name']
-    	site.create
-    	erb :'hyde/new', :locals => { :errors => site.error_messages }
+    	site.id = params['name']
+        redirect '/hyde/select?id=' + site.id if site.create
+    	erb :'hyde/create', :locals => { :errors => site.error_messages }
     end
 
 end
