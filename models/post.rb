@@ -42,24 +42,16 @@ class Post
 
     def save
         return false unless self.validate
-        return false unless self.write
-        return true
+        self.write
     end
 
     def create site_id, short_post_id
+        @id = short_post_id
+        @site_id = site_id
+        return false unless self.validate_id( short_post_id )
         return false unless self.validate
-
-        # Validate and check id ( only on create )
-        if short_post_id =~ /^[a-z0-9][a-z0-9\-]+[a-z0-9]$/
-            @id = @settings['date'][0, 10] + '-' + short_post_id + '.markdown'
-            @site_id = site_id
-        else
-            @error_messages << "Post name is not valid ( use only a-z 0-9 and - )"
-            return false
-        end
-
-        return false unless self.write
-        return true
+        @id = @settings['date'][0, 10] + '-' + @id + '.markdown'
+        self.write
     end
 
     def validate
@@ -81,6 +73,14 @@ class Post
         end
 
         @error_messages.length == 0
+    end
+
+    def validate_id( short_post_id )
+        unless short_post_id =~ /^[a-z0-9][a-z0-9\-]+[a-z0-9]$/
+            @error_messages << "Post name is not valid ( use only a-z 0-9 and - )"
+            return false
+        end
+        return true
     end
 
     def write
