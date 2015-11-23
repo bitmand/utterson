@@ -30,15 +30,17 @@ Completed features at this point is:
 
  * Create new Jekyll site
  * Create/Edit/Delete Posts
+ * Git integration ( all changes are committed )
 
 ## Roadmap
 
-Upcoming features in a prioritized list:
+Upcoming features in a non-prioritized list:
 
  * Rename Post
- * Git integration ( changes are committed )
+ * Post History ( git log )
  * Deploy functionality ( changes are pushed and/or `jekyll build` )
- * Create/Edit/Delete Pages
+ * Create/Edit/Delete/Rename/History Pages
+ * View/Edit site settings
 
 Future features in a non-prioritized list:
 
@@ -46,6 +48,7 @@ Future features in a non-prioritized list:
  * A better markdown editor
  * Authors/editors build-in ( authentication etc. )
  * Background running tasks
+ * Make git integration optional
 
 ## Ideas/thoughts/bugs etc.
 
