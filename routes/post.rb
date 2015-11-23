@@ -20,6 +20,7 @@ class MisterHyde < Sinatra::Application
         post.settings['date'] = params['date'].strip
         post.content = params['content']
         if post.create( site.id, params['name'].strip.downcase.gsub(' ', '-') )
+            Commandline.git_add( site.id, post.git_filename, 'Creating post: ' + post.id.shellescape )
             redirect '/post/edit/' + post.id + '?created=true'
         end
         erb :'post/create', :locals => { :site => site, :post => post }
@@ -40,6 +41,7 @@ class MisterHyde < Sinatra::Application
         @post.settings['date'] = params['date'].strip
         @post.content = params['content']
         @post.save
+        Commandline.git_add( @site.id, @post.git_filename , 'Updating post: ' + @post.id.shellescape )
         erb :'post/edit', :locals => { :errors => @post.error_messages }
     end
 
@@ -52,7 +54,7 @@ class MisterHyde < Sinatra::Application
     post '/post/delete/:id' do
         site = Site.get( session[:site_id] )
         post = Post.get( session[:site_id], params['id'] )
-        post.destroy
+        Commandline.git_rm( site.id, post.git_filename, 'Deleting post: ' + post.id.shellescape )
         erb :'post/delete', :locals => { :site => site, :post => post }
     end
 

@@ -25,16 +25,31 @@ class Commandline
     end
 
     def Commandline.jekyll_new( site_id )
-
         site_path = ( MisterHyde.settings.sites_dir + site_id ).shellescape
-        
         cmd = Commandline.new
         cmd.add( 'jekyll new ' + site_path )
         cmd.add( 'git init', site_path )
         cmd.add( 'git add . ', site_path )
         cmd.add( 'git commit -am "New Jekyll site"', site_path )
         cmd.execute
+        return cmd
+    end
 
+    def Commandline.git_add( site_id, filename, message )
+        site_path = ( MisterHyde.settings.sites_dir + site_id ).shellescape
+        cmd = Commandline.new
+        cmd.add( 'git add ' + filename.shellescape, site_path )
+        cmd.add( 'git commit -am "' + message + '"', site_path )
+        cmd.execute
+        return cmd
+    end
+
+    def Commandline.git_rm( site_id, filename, message )
+        site_path = ( MisterHyde.settings.sites_dir + site_id ).shellescape
+        cmd = Commandline.new
+        cmd.add( 'git rm ' + filename.shellescape, site_path )
+        cmd.add( 'git commit -am "' + message + '"', site_path )
+        cmd.execute
         return cmd
     end
 
