@@ -1,6 +1,6 @@
 class Post
 
-    attr_reader :id, :site_id, :filename, :settings, :error_messages
+    attr_reader :id, :site_id, :settings, :error_messages
     attr_accessor :content
 
     def initialize
@@ -15,14 +15,21 @@ class Post
         }
     end
 
+    def filename
+        return MisterHyde.settings.sites_dir + @site_id + '/_posts/' + @id
+    end
+
+    def git_filename
+        return '_posts/' + @id
+    end
+
     def load site_id, post_id
         @id = post_id
         @site_id = site_id
-        @filename = MisterHyde.settings.sites_dir + @site_id + '/_posts/' + @id
 
         # FIXME: Check if file exists
         # FIXME: Catch IO exceptions
-        raw_post = File.read( @filename )
+        raw_post = File.read( self.filename )
         raw_settings = YAML::load( raw_post )
 
         @settings.keys.each do |setting|
@@ -36,24 +43,23 @@ class Post
     def save
         return false unless self.validate
         return false unless self.write
-        return self.commit
+        return true
     end
 
-    def create site_id, post_id
+    def create site_id, short_post_id
         return false unless self.validate
 
         # Validate and check id ( only on create )
-        if post_id =~ /^[a-z0-9][a-z0-9\-]+[a-z0-9]$/
-            @id = @settings['date'][0, 10] + '-' + post_id + '.markdown'
+        if short_post_id =~ /^[a-z0-9][a-z0-9\-]+[a-z0-9]$/
+            @id = @settings['date'][0, 10] + '-' + short_post_id + '.markdown'
             @site_id = site_id
-            @filename = MisterHyde.settings.sites_dir + @site_id + '/_posts/' + @id
         else
             @error_messages << "Post name is not valid ( use only a-z 0-9 and - )"
             return false
         end
 
         return false unless self.write
-        return self.commit        
+        return true
     end
 
     def validate
@@ -79,27 +85,17 @@ class Post
 
     def write
         begin
-            file = File.open( @filename, "w")
+            file = File.open( self.filename, "w")
             file.write( @settings.to_yaml )
             file.write( "---\n" )
             file.write( @content )
         rescue IOError => e
-            @errors_messages << 'Could not write post to ' + @filename
+            @errors_messages << 'Could not write post to ' + self.filename
             return false
         ensure
             file.close unless file.nil?
         end
         return true
-    end
-
-    def commit
-        return true
-    end
-
-    def destroy
-        # FIXME: Catch IO Error
-        File.delete( @filename )
-        return self.commit
     end
 
     def Post.get site_id, post_id
