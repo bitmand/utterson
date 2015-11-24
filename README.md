@@ -1,6 +1,8 @@
 # Mister Hyde
 
-Mister Hyde is your friendly web editor build for [Jekyll][jekyll] sites. It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
+Mister Hyde is your friendly frontend/web editor build in Ruby for [Jekyll][jekyll] sites.
+
+It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
 
 ## Get started
 
