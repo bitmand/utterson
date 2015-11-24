@@ -41,14 +41,16 @@ Upcoming features in a non-prioritized list:
  * Deploy functionality ( changes are pushed and/or `jekyll build` )
  * Create/Edit/Delete/Rename/History Pages
  * View/Edit site settings
+ * Clone existing Jekyll site from Git repo
+ * Add custom commit message to changes
 
 Future features in a non-prioritized list:
 
  * File management ( [Jekyll static files][jekyll-files] )
  * A better markdown editor
- * Authors/editors build-in ( authentication etc. )
- * Background running tasks
- * Make git integration optional
+ * Authors/editors/users build-in ( authentication etc. )
+ * Background running tasks ( Sidekiq workers doing the dirty work )
+ * Maybe make git integration optional
 
 ## Ideas/thoughts/bugs etc.
 
