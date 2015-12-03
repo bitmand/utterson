@@ -24,9 +24,9 @@
           <a class="navbar-brand" href="/">Mister Hyde</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/hyde/sites">Websites</a></li>
-            <!--<li><a href="/hyde/about">Settings</a></li>-->
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="/hyde/sites">Switch website</a></li>
+            <li><a href="/hyde/create">Create website</a></li>
             <!--<li><a href="/hyde/about">About</a></li>-->
             <!--<li><a href="/hyde/help">Help</a></li>-->
           </ul>
@@ -39,6 +39,7 @@
 
         <div class="col-sm-3 col-md-2 sidebar">
           <% if session[:site_id] %>
+
             <h4><%= session[:site_id] %></h4>
             <p><%= session[:site_title] %></p>
 
@@ -47,8 +48,8 @@
               <li<% if request.path_info =~ /^\/post\// %> class="active"<% end %>><a href="/post/list">Posts</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-              <li<% if request.path_info =~ /^\/deploy\// %> class="active"<% end %>><a href="/deploy">Deploy</a></li>
-              <li<% if request.path_info =~ /^\/settings\// %> class="active"<% end %>><a href="/settings">Settings</a></li>
+              <!--<li<% if request.path_info =~ /^\/deploy\// %> class="active"<% end %>><a href="/deploy">Deploy</a></li>-->
+              <li<% if request.path_info =~ /^\/site\/configuration/ %> class="active"<% end %>><a href="/site/configuration">Configuration</a></li>
             </ul>
           <% end %>
         </div>
