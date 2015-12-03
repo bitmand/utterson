@@ -1,0 +1,32 @@
+<h1 class="page-header">Site rename</h1>
+
+<div class="row">
+
+    <% if request.request_method == "POST" %>
+        <% if site.error_messages.length == 0 %>
+            <div class="alert alert-success" role="alert">
+                <strong>Awesome!</strong> Site was successfully renamed!
+            </div>
+        <% else %>
+            <div class="alert alert-danger" role="alert">
+                <strong>Darn!</strong> Ran into some trouble:<br /><ul><li><%= site.error_messages.join('</li><li>') %></li></ul>
+            </div>
+        <% end %>
+    <% end %>
+
+    <form method="post" action="/site/rename">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="siteid">Site Name</label>
+                <input type="text" class="form-control" id="siteid" name="siteid" placeholder="Site ID" value="<%= site.id %>">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-default" href="/site/configuration" role="button">Cancel</a>
+
+        </div>
+
+    </form>
+</div>

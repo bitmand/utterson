@@ -1,0 +1,64 @@
+<h1 class="page-header">Configuration</h1>
+
+<div class="row">
+
+    <% unless params['created'].nil? %>
+        <div class="alert alert-success" role="alert">
+            <strong>Awesome!</strong> Jekyll site was successfully created. You can edit settings here or start <a href="/post/list">creating posts</a>?
+        </div>
+    <% end %>
+
+    <% if request.request_method == "POST" %>
+        <% unless site.errors %>
+            <div class="alert alert-success" role="alert">
+                <strong>Awesome!</strong> Configuration was successfully saved, care to <a href="/deploy">deploy this change</a>?
+            </div>
+        <% else %>
+            <div class="alert alert-danger" role="alert">
+                <strong>Darn!</strong> Ran into some trouble:<br /><ul><li><%= post.error_messages.join('</li><li>') %></li></ul>
+            </div>
+        <% end %>
+    <% end %>
+
+    <form method="post" action="/site/configuration">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title of site" value="<%= site.config['title'] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="your-email@domain.com" value="<%= site.config['email'] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4"><%= site.config['description'] %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" class="form-control" id="url" name="url" placeholder="http://yourdomain.com" value="<%= site.config['url'] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="baseurl">Base URL</label>
+                <input type="text" class="form-control" id="baseurl" name="baseurl" placeholder="the subpath of your site, e.g. /blog" value="<%= site.config['baseurl'] %>">
+            </div>
+
+            <h3>More options</h3>
+            <a class="btn btn-primary" href="/site/rename" role="button">Rename Site</a>
+            <!--<a class="btn btn-danger" href="/site/delete" role="button">Delete Site</a>-->
+
+        </div>
+
+    </form>
+</div>
