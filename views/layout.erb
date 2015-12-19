@@ -11,8 +11,8 @@
 
     <title>Utterson</title>
 
-	<link href="/css/bootstrap.min.css" rel="stylesheet" />
-	<script src="/js/bootstrap.min.js"></script>
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="/js/bootstrap.min.js"></script>
     <link href="/css/dashboard.css" rel="stylesheet">
   </head>
 
@@ -49,8 +49,9 @@
             </ul>
             <ul class="nav nav-sidebar">
               <!--<li<% if request.path_info =~ /^\/deploy\// %> class="active"<% end %>><a href="/deploy">Deploy</a></li>-->
-              <li<% if request.path_info =~ /^\/site\/configuration/ %> class="active"<% end %>><a href="/site/configuration">Configuration</a></li>
+              <li<% if request.path_info =~ /^\/site\// %> class="active"<% end %>><a href="/site/configuration">Configuration</a></li>
             </ul>
+
           <% end %>
         </div>
 
