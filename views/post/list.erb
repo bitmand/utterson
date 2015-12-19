@@ -4,25 +4,25 @@
 
 <div class="table-responsive">
 
-	<table class="table table-striped">
-		<thead>
-		<tr>
-			<th>Name</th>
-			<th>Title</th>
-			<th>&nbsp;</th>
-			<th>Date</th>
-		</tr>
-		</thead>
-		<tbody>
-			<% posts.each do |post| %>
-			<tr>
-				<td><a href="/post/edit/<%= post[0] %>"><%= post[0] %></a></td>
-				<td><%= post[1] %></td>
-				<td><span class="label label-<% if post[2] %>success">Published<% else %>warning">Unpublished<% end %></span></td>
-				<td><%= post[3] %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>&nbsp;</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% posts.each do |post| %>
+            <tr>
+                <td><a href="/post/edit/<%= post[0] %>"><%= post[0] %></a></td>
+                <td><%= post[1] %></td>
+                <td><span class="label label-<% if post[2] %>success">Published<% else %>warning">Unpublished<% end %></span></td>
+                <td><%= post[3] %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 
 </div>
