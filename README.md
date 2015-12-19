@@ -1,6 +1,6 @@
-# Mister Hyde
+# Utterson
 
-Mister Hyde is your friendly frontend/web editor build in Ruby for [Jekyll][jekyll] sites.
+Utterson is your friendly frontend/web editor build in Ruby for [Jekyll][jekyll] sites.
 
 It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
 
@@ -8,8 +8,8 @@ It is in a **very early state** at this point, please read about the features an
 
 It's fairly simple to get started and test Mister Hyde:
 
-    git clone git@github.com:mister-hyde/mister-hyde.git
-    cd mister-hyde
+    git clone git@github.com:gabriel-john/utterson.git
+    cd utterson
     bundle install
     bundle exec rackup
 
@@ -22,9 +22,9 @@ Either create a new one with the `Create Site` button or copy/symlink an existin
 
 ## Requirements
 
-Mister Hyde is build using [Sinatra][sinatra] and read/writes data directly from the files in the Jekyll site directory, no external database is needed. Look at the Gemfile, it really is extremely boring.
+Utterson is build using [Sinatra][sinatra] and read/writes data directly from the files in the Jekyll site directory, no external database is needed. Look at the Gemfile, it really is extremely boring.
 
-It does however rely on [Git][git] and at this point expects the Jekyll sites to be checked into a git repository.
+It does however rely on [Git][git] and at this point expects the Jekyll sites to be checked into a git repository. New Jekyll sites created with Utterson will also be initialized with Git and all changes is committed as well.
 
 ## Features
 
@@ -33,6 +33,7 @@ Completed features at this point is:
  * Create new Jekyll site
  * Create/Edit/Delete Posts
  * Git integration ( all changes are committed )
+ * View/Edit site settings
 
 ## Roadmap
 
@@ -42,7 +43,6 @@ Upcoming features in a non-prioritized list:
  * Post History ( git log )
  * Deploy functionality ( changes are pushed and/or `jekyll build` )
  * Create/Edit/Delete/Rename/History Pages
- * View/Edit site settings
  * Clone existing Jekyll site from Git repo
  * Add custom commit message to changes
 
@@ -62,4 +62,3 @@ Please create an issue :)
 [jekyll-files]: http://jekyllrb.com/docs/static-files/
 [sinatra]:      http://www.sinatrarb.com/
 [git]:          https://git-scm.com/
-
