@@ -10,7 +10,7 @@ It's fairly simple to get started and test Mister Hyde:
 
     git clone git@github.com:gabriel-john/utterson.git
     cd utterson
-    bundle install
+    bundle install --path vendor/bundle
     bundle exec rackup
 
 Visit http://127.0.0.1:9292/ in your browser and you should see an empty list of Jekyll sites.

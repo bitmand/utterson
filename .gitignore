@@ -1,2 +1,5 @@
 sites/*
 !sites/README.md
+.bundle/
+vendor/
+
