@@ -1,10 +1,9 @@
 # Directory /sites
 
-In this directory you will find the Jekyll websites that Mister Hyde has access to.
+In this directory you will find the Jekyll websites that Utterson has access to.
 
-To create a new website, there is a couple of different options:
+To create a new website, either:
 
- * Use Mister Hyde to create new Jekyll websites
- * Create new websites manually with `jekyll new`: http://jekyllrb.com/docs/quickstart/
- * Or symlink to Jekyll websites elsewhere in the filesystem.
+ * Use Utterson to create new Jekyll websites
+ * Symlink to Jekyll websites elsewhere in the filesystem.
 

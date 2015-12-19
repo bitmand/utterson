@@ -1,4 +1,4 @@
-class MisterHyde < Sinatra::Application
+class Utterson < Sinatra::Application
 
     get '/hyde/sites' do
         @sites = Site.all

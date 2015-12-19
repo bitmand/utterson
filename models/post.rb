@@ -16,7 +16,7 @@ class Post
     end
 
     def filename
-        return MisterHyde.settings.sites_dir + @site_id + '/_posts/' + @id
+        return Utterson.settings.sites_dir + @site_id + '/_posts/' + @id
     end
 
     def git_filename
@@ -105,7 +105,7 @@ class Post
     end
 
     def Post.all site_id
-        posts_dir = MisterHyde.settings.sites_dir + site_id + '/_posts'
+        posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
         Dir.entries( posts_dir ).reverse.each do |post_id|
             yaml_config = posts_dir + '/' + post_id

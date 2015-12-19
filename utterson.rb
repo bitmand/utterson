@@ -23,7 +23,7 @@ require_relative 'routes/post.rb'
 # FIXME: The secret is random enough for now
 use Rack::Session::Cookie, :expire_after => 3600, :secret => 'lbmjgwktggceepkuomsduvysqbuvhxbu'
 
-class MisterHyde < Sinatra::Application
+class Utterson < Sinatra::Application
 
 	set :sites_dir, 'sites/'
 

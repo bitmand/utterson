@@ -1,4 +1,4 @@
-class MisterHyde < Sinatra::Application
+class Utterson < Sinatra::Application
 
     get '/post/list' do
         posts = Post.all( session[:site_id] )

@@ -8,7 +8,7 @@ class Site
     end
 
     def config_filename
-        MisterHyde.settings.sites_dir + @id + '/' + self.git_config_filename
+        Utterson.settings.sites_dir + @id + '/' + self.git_config_filename
     end
 
     def git_config_filename
@@ -16,7 +16,7 @@ class Site
     end
 
     def layouts_directory
-        MisterHyde.settings.sites_dir + @id + '/_layouts'
+        Utterson.settings.sites_dir + @id + '/_layouts'
     end
 
     def errors
@@ -56,7 +56,7 @@ class Site
         old_id = @id
         @id = site_id
         return false unless self.validate_id
-        FileUtils.mv( MisterHyde.settings.sites_dir + old_id, MisterHyde.settings.sites_dir + @id )
+        FileUtils.mv( Utterson.settings.sites_dir + old_id, Utterson.settings.sites_dir + @id )
         return true
     end
 
@@ -70,7 +70,7 @@ class Site
             @error_messages << 'Invalid site name. Can only use a-z 0-9 _ - . and min. 3 characters.'
             return false
         end
-        if File.exists? MisterHyde.settings.sites_dir + @id
+        if File.exists? Utterson.settings.sites_dir + @id
             @error_messages << 'Site allready exists with that name.'
             return false
         end
@@ -106,7 +106,7 @@ class Site
 
     def Site.all
         sites = Array.new
-        Dir.entries( MisterHyde.settings.sites_dir ).each do |site_id|
+        Dir.entries( Utterson.settings.sites_dir ).each do |site_id|
             if site = Site.get( site_id )
                 sites << site
             end

@@ -1,4 +1,4 @@
-class MisterHyde < Sinatra::Application
+class Utterson < Sinatra::Application
 
     get '/site/configuration' do
         erb :'site/config', :locals => { :site => Site.get( session['site_id'] ) }
