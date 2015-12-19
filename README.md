@@ -1,12 +1,12 @@
 # Utterson
 
-Utterson is your friendly frontend/web editor build in Ruby for [Jekyll][jekyll] sites.
+Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites.
 
 It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
 
 ## Get started
 
-It's fairly simple to get started and test Mister Hyde:
+It's very simple to get started and test Utterson:
 
     git clone git@github.com:gabriel-john/utterson.git
     cd utterson
@@ -15,7 +15,7 @@ It's fairly simple to get started and test Mister Hyde:
 
 Visit http://127.0.0.1:9292/ in your browser and you should see an empty list of Jekyll sites.
 
-Either create a new one with the `Create Site` button or copy/symlink an existing Jekyll site in the `sites/` directory:
+Either create a new one or copy/symlink an existing Jekyll site in the `sites/` directory:
 
     cd sites/
     ln -s ~/path/to/your/jekyll-site jekyll-site
