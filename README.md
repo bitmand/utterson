@@ -1,6 +1,6 @@
 # Utterson
 
-Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites.
+Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites. Gabriel John Utterson is a loyal friend of Dr. Jekyll in the story: [Strange Case of Dr Jekyll and Mr Hyde][strange-case]
 
 It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
 
@@ -86,3 +86,4 @@ Please create an issue :)
 [jekyll-files]: http://jekyllrb.com/docs/static-files/
 [sinatra]:      http://www.sinatrarb.com/
 [git]:          https://git-scm.com/
+[strange-case]: https://en.wikipedia.org/wiki/Strange_Case_of_Dr_Jekyll_and_Mr_Hyde
