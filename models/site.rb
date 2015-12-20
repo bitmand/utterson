@@ -82,7 +82,7 @@ class Site
             file = File.open( self.config_filename, "w")
             file.write( @config.to_yaml )
         rescue IOError => e
-            @errors_messages << 'Could not write post to ' + self.config_filename
+            @error_messages << 'Could not write post to ' + self.config_filename
             return false
         ensure
             file.close unless file.nil?
@@ -96,6 +96,14 @@ class Site
             layouts << layout.gsub!(/\.html$/, '') unless File.directory? self.layouts_directory + '/' + layout
         end
         return layouts
+    end
+
+    def deploy environment
+        if @config['utterson_deploy'][ environment ].nil?
+            @error_messages << 'Unknown environment: ' + environment
+            return false
+        end
+        Commandline.deploy( @id, @config['utterson_deploy'][ environment ]['commands'] )
     end
 
     def Site.get site_id

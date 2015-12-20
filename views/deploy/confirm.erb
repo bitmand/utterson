@@ -1,0 +1,27 @@
+<%
+    env_name = params[:environment]
+    environment = site.config['utterson_deploy'][ env_name ]
+%>
+<h1 class="page-header">Deploy to <%= env_name %></h1>
+<p><%= environment['description'] %><br />
+<a href="<%= environment['url'] %>"><%= environment['url'] %></a></p>
+
+<div class="row">
+
+    <form method="post" action="/deploy/to/<%= env_name %>/confirmed">
+
+        <div class="col-md-12">
+
+            <button type="submit" class="btn btn-danger">Confirm deploy</button>
+            <a class="btn btn-default" href="/deploy" role="button">Cancel</a>
+
+            <h3>Commands to be executed</h3>
+
+            <div class="form-group">
+                <textarea class="form-control" rows="<%= (environment['commands'].length + 3).to_s %>" style="font-family: Consolas, Lucida Console, monospace; color: #FFF; background: #000;" disabled>$ <%= environment['commands'].join("\n$ ") %></textarea>
+            </div>
+
+        </div>
+
+    </form>
+</div>

@@ -1,10 +1,11 @@
 class Commandline
 
-    attr_reader :last_output, :last_status, :commands, :error_messages
+    attr_reader :last_output, :last_status, :full_output, :commands, :error_messages
 
     def initialize
         @error_messages = Array.new
         @commands = Array.new
+        @full_output = Array.new
     end
 
     def add( command, path = String.new )
@@ -14,7 +15,9 @@ class Commandline
 
     def execute
         @commands.each do |command|
+            @full_output << '$ ' + command
             @last_output, @last_status = Open3.capture2e( command ) # , stdin_data: stdin
+            @full_output << @last_output
             unless @last_status.success?
                 @error_messages << 'Command failed with: ' + @last_output
                 puts 'ERROR: Commandline run failed! Command was "' + command + '" and error was: "' + @last_output + '"'
@@ -49,6 +52,16 @@ class Commandline
         cmd = Commandline.new
         cmd.add( 'git rm ' + filename.shellescape, site_path )
         cmd.add( 'git commit -am "' + message + '"', site_path )
+        cmd.execute
+        return cmd
+    end
+
+    def Commandline.deploy( site_id, commands )
+        site_path = ( Utterson.settings.sites_dir + site_id ).shellescape
+        cmd = Commandline.new
+        commands.each do |command|
+            cmd.add( command, site_path )
+        end
         cmd.execute
         return cmd
     end

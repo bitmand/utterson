@@ -48,7 +48,7 @@
               <li<% if request.path_info =~ /^\/post\// %> class="active"<% end %>><a href="/post/list">Posts</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-              <!--<li<% if request.path_info =~ /^\/deploy\// %> class="active"<% end %>><a href="/deploy">Deploy</a></li>-->
+              <li<% if request.path_info =~ /^\/deploy/ %> class="active"<% end %>><a href="/deploy">Deploy</a></li>
               <li<% if request.path_info =~ /^\/site\// %> class="active"<% end %>><a href="/site/configuration">Configuration</a></li>
             </ul>
 

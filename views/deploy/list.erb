@@ -1,0 +1,43 @@
+<h1 class="page-header">Deploy</h1>
+
+<div class="table-responsive">
+
+<% if site.config['utterson_deploy'].nil? %>
+
+    <div class="alert alert-danger" role="alert">
+        <strong>Error!</strong> No environments exists to deploy to!<br />
+        Read more in <a href="http://gabriel-john.github.io/docs/">the documentation</a> on how to setup environments.
+    </div>
+
+<% else %>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Environment</th>
+            <th>Description</th>
+            <th>URL</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% site.config['utterson_deploy'].each do |environment, config| %>
+            <tr>
+                <td>
+                <% if config['confirm'] %>
+                    <a href="/deploy/to/<%= environment %>" class="btn btn-primary" role="button">Deploy to <%= environment %></a>
+                <% else %>
+                    <form method="post" action="/deploy/to/<%= environment %>/confirmed">
+                        <button type="submit" class="btn btn-primary">Deploy to <%= environment %></button>
+                    </form>
+                <% end %>
+                </td>
+                <td><%= config['description'] %></td>
+                <td><a href="<%= config['url'] %>" target="_new"><%= config['url'] %></a></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<% end %>
+
+</div>

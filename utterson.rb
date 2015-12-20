@@ -18,6 +18,7 @@ require_relative 'routes/hyde.rb'
 require_relative 'routes/site.rb'
 require_relative 'routes/page.rb'
 require_relative 'routes/post.rb'
+require_relative 'routes/deploy.rb'
 
 # Enable sessions
 # FIXME: The secret is random enough for now
@@ -25,17 +26,17 @@ use Rack::Session::Cookie, :expire_after => 3600, :secret => 'lbmjgwktggceepkuom
 
 class Utterson < Sinatra::Application
 
-	set :sites_dir, 'sites/'
+    set :sites_dir, 'sites/'
 
-	before do
-		unless ['/','/hyde/sites','/hyde/create','/hyde/select'].include? request.path_info
-			redirect '/hyde/sites' if session[:site_id].nil?
-		end
-	end
+    before do
+        unless ['/','/hyde/sites','/hyde/create','/hyde/select'].include? request.path_info
+            redirect '/hyde/sites' if session[:site_id].nil?
+        end
+    end
 
-	get '/' do
-		redirect '/hyde/sites'
-	end
+    get '/' do
+        redirect '/hyde/sites'
+    end
 
 end
 

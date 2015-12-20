@@ -20,6 +20,28 @@ Either create a new one or copy/symlink an existing Jekyll site in the `sites/` 
     cd sites/
     ln -s ~/path/to/your/jekyll-site jekyll-site
 
+## How to setup deploys of Jekyll sites within Utterson
+
+Setting up deploy of the Jekyll site within Utterson requires a bit of manuel work. The information needed for deploy should be added to the Jekyll `_config.yml` file for the site. This is a complete example with 2 environments. All settings is mandatory, but you can ofcourse has as many environments as you like:
+
+    utterson_deploy:
+      staging:                                  # Environment name
+        url: http://staging.example.com/        # URL to the environment
+        confirm: false                          # Confirm deploy? Read more below
+        description: Staging environment        # Simple description
+        commands:                               # List of commands to be executed
+        - jekyll build
+        - rsync -a . user@some.server:/site/path
+      production:
+        url: http://www.example.com
+        confirm: true
+        description: Production environment
+        commands:
+        - jekyll build
+        - git push
+
+The `confirm` setting is a bit special. If false, the button to deploy an environment goes directly to deploy. But if true, an extra confirm click on a red button is neeeded before the deploy takes place.
+
 ## Requirements
 
 Utterson is build using [Sinatra][sinatra] and read/writes data directly from the files in the Jekyll site directory, no external database is needed. Look at the Gemfile, it really is extremely boring.
@@ -34,6 +56,7 @@ Completed features at this point is:
  * Create/Edit/Delete Posts
  * Git integration ( all changes are committed )
  * View/Edit site settings
+ * Deploy functionality
 
 ## Roadmap
 
@@ -41,10 +64,11 @@ Upcoming features in a non-prioritized list:
 
  * Rename Post
  * Post History ( git log )
- * Deploy functionality ( changes are pushed and/or `jekyll build` )
  * Create/Edit/Delete/Rename/History Pages
  * Clone existing Jekyll site from Git repo
  * Add custom commit message to changes
+ * Log deploys
+ * Maybe consider adding tags to deploys ( or some other way of tracking which "version" is currently deployed in each environment )
 
 Future features in a non-prioritized list:
 
