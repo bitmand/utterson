@@ -4,9 +4,13 @@ Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites. Gabrie
 
 It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
 
+## Screenshots
+
+If you just want to see what it looks like, there is a bunch of [screenshots][screenshots] over at the [Utterson website][www].
+
 ## Get started
 
-It's very simple to get started and test Utterson:
+It's very simple to get started and try Utterson:
 
 ```shell
 git clone git@github.com:gabriel-john/utterson.git
@@ -23,10 +27,6 @@ Either create a new one or copy/symlink an existing Jekyll site in the `sites/` 
 cd sites/
 ln -s ~/path/to/your/jekyll-site jekyll-site
 ```
-
-## Screenshots
-
-There is a bunch of [screenshots][screenshots] over at the [Utterson website][www].
 
 ## How to setup deploys of Jekyll sites within Utterson
 
