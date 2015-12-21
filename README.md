@@ -20,6 +20,10 @@ Either create a new one or copy/symlink an existing Jekyll site in the `sites/` 
     cd sites/
     ln -s ~/path/to/your/jekyll-site jekyll-site
 
+## Screenshots
+
+There is a bunch of [screenshots][screenshots] over at the [Utterson website][www].
+
 ## How to setup deploys of Jekyll sites within Utterson
 
 Setting up deploy of the Jekyll site within Utterson requires a bit of manuel work. The information needed for deploy should be added to the Jekyll `_config.yml` file for the site. This is a complete example with 2 environments. All settings is mandatory, but you can ofcourse has as many environments as you like:
@@ -87,3 +91,6 @@ Please create an issue :)
 [sinatra]:      http://www.sinatrarb.com/
 [git]:          https://git-scm.com/
 [strange-case]: https://en.wikipedia.org/wiki/Strange_Case_of_Dr_Jekyll_and_Mr_Hyde
+[screenshots]:  http://gabriel-john.github.io/2015/12/21/utterson-screenshots.html
+[www]:          http://gabriel-john.github.io/
+
