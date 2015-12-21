@@ -8,17 +8,21 @@ It is in a **very early state** at this point, please read about the features an
 
 It's very simple to get started and test Utterson:
 
-    git clone git@github.com:gabriel-john/utterson.git
-    cd utterson
-    bundle install --path vendor/bundle
-    bundle exec rackup
+```shell
+git clone git@github.com:gabriel-john/utterson.git
+cd utterson
+bundle install --path vendor/bundle
+bundle exec rackup
+```
 
 Visit http://127.0.0.1:9292/ in your browser and you should see an empty list of Jekyll sites.
 
 Either create a new one or copy/symlink an existing Jekyll site in the `sites/` directory:
 
-    cd sites/
-    ln -s ~/path/to/your/jekyll-site jekyll-site
+```shell
+cd sites/
+ln -s ~/path/to/your/jekyll-site jekyll-site
+```
 
 ## Screenshots
 
@@ -28,21 +32,23 @@ There is a bunch of [screenshots][screenshots] over at the [Utterson website][ww
 
 Setting up deploy of the Jekyll site within Utterson requires a bit of manuel work. The information needed for deploy should be added to the Jekyll `_config.yml` file for the site. This is a complete example with 2 environments. All settings is mandatory, but you can ofcourse has as many environments as you like:
 
-    utterson_deploy:
-      staging:                                  # Environment name
-        url: http://staging.example.com/        # URL to the environment
-        confirm: false                          # Confirm deploy? Read more below
-        description: Staging environment        # Simple description
-        commands:                               # List of commands to be executed
-        - jekyll build
-        - rsync -a . user@some.server:/site/path
-      production:
-        url: http://www.example.com
-        confirm: true
-        description: Production environment
-        commands:
-        - jekyll build
-        - git push
+```yaml
+utterson_deploy:
+  staging:                                  # Environment name
+    url: http://staging.example.com/        # URL to the environment
+    confirm: false                          # Confirm deploy? Read more below
+    description: Staging environment        # Simple description
+    commands:                               # List of commands to be executed
+    - jekyll build
+    - rsync -a . user@some.server:/site/path
+  production:
+    url: http://www.example.com
+    confirm: true
+    description: Production environment
+    commands:
+    - jekyll build
+    - git push
+```
 
 The `confirm` setting is a bit special. If false, the button to deploy an environment goes directly to deploy. But if true, an extra confirm click on a red button is neeeded before the deploy takes place.
 
