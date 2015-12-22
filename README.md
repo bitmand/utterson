@@ -70,23 +70,7 @@ Completed features at this point is:
 
 ## Roadmap
 
-Upcoming features in a non-prioritized list:
-
- * Rename Post
- * Post History ( git log )
- * Create/Edit/Delete/Rename/History Pages
- * Clone existing Jekyll site from Git repo
- * Add custom commit message to changes
- * Log deploys
- * Maybe consider adding tags to deploys ( or some other way of tracking which "version" is currently deployed in each environment )
-
-Future features in a non-prioritized list:
-
- * File management ( [Jekyll static files][jekyll-files] )
- * A better markdown editor
- * Authors/editors/users build-in ( authentication etc. )
- * Background running tasks ( Sidekiq workers doing the dirty work )
- * Maybe make git integration optional
+Have a look at [the issues][issues] list. Issues with the label `feature` is next up on the roadmap, where as `future-features` is ideas for the future.
 
 ## Ideas/thoughts/bugs etc.
 
@@ -99,4 +83,5 @@ Please create an issue :)
 [strange-case]: https://en.wikipedia.org/wiki/Strange_Case_of_Dr_Jekyll_and_Mr_Hyde
 [screenshots]:  http://gabriel-john.github.io/2015/12/21/utterson-screenshots.html
 [www]:          http://gabriel-john.github.io/
+[issues]:       https://github.com/gabriel-john/utterson/issues
 
