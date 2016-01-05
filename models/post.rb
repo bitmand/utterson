@@ -10,7 +10,7 @@ class Post
             'layout' => 'post',
             'title' => String.new,
             'date' => DateTime.now.strftime('%F %T'),
-            'categories' => String.new,
+            'categories' => Array.new,
             'published' => true
         }
     end
@@ -26,18 +26,29 @@ class Post
     def load site_id, post_id
         @id = post_id
         @site_id = site_id
-
-        # FIXME: Check if file exists
-        # FIXME: Catch IO exceptions
+        return false unless File.exists? self.filename
         raw_post = File.read( self.filename )
-        raw_settings = YAML::load( raw_post )
 
-        @settings.keys.each do |setting|
-            if not raw_settings[ setting ].nil?
-                @settings[ setting ] = raw_settings[ setting ]
+        YAML::load( raw_post ).each do |name, value|
+            case name
+            when 'category'
+                @settings['categories'] << value
+            when 'categories'
+                if value.is_a? Array
+                    @settings['categories'] += value
+                else
+                    value.split(',').each do |category|
+                        @settings['categories'] << category.strip
+                    end
+                end
+            else
+                @settings[ name ] = value
             end
         end
+
         @content = raw_post.gsub!( /---(.*)---/m, '' )
+
+        return true
     end
 
     def save
