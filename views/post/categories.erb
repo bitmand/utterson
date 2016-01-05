@@ -38,20 +38,6 @@
     </div>
 
     <div class="col-md-4">
-
-        <form method="post" action="/post/categories/<%= post.id %>?action=create">
-            <h3>New category</h3>
-
-            <div class="form-group">
-                <input type="text" class="form-control" id="category" name="category" placeholder="new category name" />
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add to post</button>
-        </form>
-
-    </div>
-    <div class="col-md-4">
-
         <h3>Existing categories</h3>
 
         <form method="post" action="/post/categories/<%= post.id %>?action=add">
@@ -68,6 +54,19 @@
                     <% end %>
                 </tbody>
             </table>
+
+            <button type="submit" class="btn btn-primary">Add to post</button>
+        </form>
+
+    </div>
+    <div class="col-md-4">
+
+        <form method="post" action="/post/categories/<%= post.id %>?action=create">
+            <h3>New category</h3>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="category" name="category" placeholder="new category name" />
+            </div>
 
             <button type="submit" class="btn btn-primary">Add to post</button>
         </form>
