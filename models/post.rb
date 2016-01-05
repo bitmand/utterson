@@ -106,6 +106,16 @@ class Post
         return true
     end
 
+    def all_categories
+        categories = Array.new
+        Post.all(@site_id).each do |post|
+            post.settings['categories'].each do |category|
+                categories << category
+            end
+        end
+        return categories.sort
+    end
+
     def Post.get site_id, post_id
         post = Post.new
         post.load( site_id, post_id )

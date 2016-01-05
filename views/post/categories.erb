@@ -54,9 +54,23 @@
 
         <h3>Existing categories</h3>
 
-        <!--<form method="post" action="/post/categories/<%= post.id %>?action=add">
+        <form method="post" action="/post/categories/<%= post.id %>?action=add">
+
+            <table class="table table-striped">
+                <tbody>
+                    <% post.all_categories.each do |category| %>
+                    <% unless post.settings['categories'].include? category %>
+                    <tr>
+                        <td width="20"><input type="checkbox" name="categories[]" value="<%= category %>" /></td>
+                        <td><%= category %></td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+
             <button type="submit" class="btn btn-primary">Add to post</button>
-        </form>-->
+        </form>
 
     </div>
 

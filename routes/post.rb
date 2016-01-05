@@ -57,6 +57,9 @@ class Utterson < Sinatra::Application
         post = Post.get( session[:site_id], params['id'] )
         case params['action']
         when 'add'
+            params['categories'].each do |category|
+                post.settings['categories'] << category
+            end
         when 'create'
             post.settings['categories'] << params['category'].strip
         when 'remove'
