@@ -68,14 +68,11 @@ class Post
     def validate
         @error_messages << 'Title is mandatory' if @settings['title'].length == 0
 
-        case @settings['published']
-        when "true"
-            @settings['published'] = true
-        when "false"
-            @settings['published'] = false
-        else
-            @error_messages << 'Published must be true or false'
+        if @settings['published'].is_a? String
+            @settings['published'] = ( @settings['published'] == 'true' ? true : false )
         end
+
+        # FIXME: Uniquefy the settings categories array
 
         begin
             DateTime.strptime( @settings['date'].to_s, '%Y-%m-%d %H:%M:%S')
