@@ -113,14 +113,13 @@ class Post
     end
 
     def Post.all site_id
+        # FIXME: This loads _ALL_ posts into one array, which is BAD!
+        #        We should have some sort of lazy loading of the blog post content
         posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
         Dir.entries( posts_dir ).reverse.each do |post_id|
             yaml_config = posts_dir + '/' + post_id
-            if not File.directory? yaml_config
-                config = YAML::load_file( yaml_config )
-                posts << [ post_id, config['title'], ( config['published'].nil? ? true : config['published'] ), config['date'] ]
-            end
+            posts << Post.get( site_id, post_id) unless File.directory? yaml_config
         end
         return posts
     end
