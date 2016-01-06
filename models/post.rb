@@ -72,7 +72,7 @@ class Post
             @settings['published'] = ( @settings['published'] == 'true' ? true : false )
         end
 
-        # FIXME: Uniquefy the settings categories array
+        @settings['categories'].uniq!
 
         begin
             DateTime.strptime( @settings['date'].to_s, '%Y-%m-%d %H:%M:%S')
