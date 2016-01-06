@@ -10,7 +10,7 @@ class Post
             'layout' => 'post',
             'title' => String.new,
             'date' => DateTime.now.strftime('%F %T'),
-            'categories' => String.new,
+            'categories' => Array.new,
             'published' => true
         }
     end
@@ -26,18 +26,29 @@ class Post
     def load site_id, post_id
         @id = post_id
         @site_id = site_id
-
-        # FIXME: Check if file exists
-        # FIXME: Catch IO exceptions
+        return false unless File.exists? self.filename
         raw_post = File.read( self.filename )
-        raw_settings = YAML::load( raw_post )
 
-        @settings.keys.each do |setting|
-            if not raw_settings[ setting ].nil?
-                @settings[ setting ] = raw_settings[ setting ]
+        YAML::load( raw_post ).each do |name, value|
+            case name
+            when 'category'
+                @settings['categories'] << value
+            when 'categories'
+                if value.is_a? Array
+                    @settings['categories'] += value
+                else
+                    value.split(',').each do |category|
+                        @settings['categories'] << category.strip
+                    end
+                end
+            else
+                @settings[ name ] = value
             end
         end
-        @content = raw_post.gsub!( /---(.*)---/m, '' )
+
+        @content = raw_post.gsub!( /---(.*)---/m, '' ).strip
+
+        return true
     end
 
     def save
@@ -57,14 +68,11 @@ class Post
     def validate
         @error_messages << 'Title is mandatory' if @settings['title'].length == 0
 
-        case @settings['published']
-        when "true"
-            @settings['published'] = true
-        when "false"
-            @settings['published'] = false
-        else
-            @error_messages << 'Published must be true or false'
+        if @settings['published'].is_a? String
+            @settings['published'] = ( @settings['published'] == 'true' ? true : false )
         end
+
+        @settings['categories'].uniq!
 
         begin
             DateTime.strptime( @settings['date'].to_s, '%Y-%m-%d %H:%M:%S')
@@ -98,6 +106,16 @@ class Post
         return true
     end
 
+    def all_categories
+        categories = Array.new
+        Post.all(@site_id).each do |post|
+            post.settings['categories'].each do |category|
+                categories << category
+            end
+        end
+        return categories.uniq.sort
+    end
+
     def Post.get site_id, post_id
         post = Post.new
         post.load( site_id, post_id )
@@ -105,14 +123,13 @@ class Post
     end
 
     def Post.all site_id
+        # FIXME: This loads _ALL_ posts into one array, which is BAD!
+        #        We should have some sort of lazy loading of the blog post content
         posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
         Dir.entries( posts_dir ).reverse.each do |post_id|
             yaml_config = posts_dir + '/' + post_id
-            if not File.directory? yaml_config
-                config = YAML::load_file( yaml_config )
-                posts << [ post_id, config['title'], ( config['published'].nil? ? true : config['published'] ), config['date'] ]
-            end
+            posts << Post.get( site_id, post_id) unless File.directory? yaml_config
         end
         return posts
     end

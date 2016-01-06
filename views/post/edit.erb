@@ -62,8 +62,16 @@
                 </select>
             </div>
 
-            <h3>Options</h3>
+            <div class="form-group">
+                <label>Categories</label><br />
+                <% post.settings['categories'].each do |category| %>
+                    <span class="label label-primary"><%= category %></span>
+                <% end %>
+            </div>
+
+            <h3>More options</h3>
             <!--<a class="btn btn-primary" href="/post/rename/<%= post.id %>" role="button">Rename Post</a>-->
+            <a class="btn btn-primary" href="/post/categories/<%= post.id %>" role="button">Categories</a>
             <a class="btn btn-danger" href="/post/delete/<%= post.id %>" role="button">Delete Post</a>
 
         </div>

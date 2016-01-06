@@ -46,6 +46,33 @@ class Utterson < Sinatra::Application
         erb :'post/edit', :locals => { :site => site, :post => post }
     end
 
+    get '/post/categories/:id' do
+        site = Site.get( session[:site_id] )
+        post = Post.get( session[:site_id], params['id'] )
+        erb :'post/categories', :locals => { :site => site, :post => post }
+    end
+
+    post '/post/categories/:id' do
+        site = Site.get( session[:site_id] )
+        post = Post.get( session[:site_id], params['id'] )
+        case params['action']
+        when 'add'
+            params['categories'].each do |category|
+                post.settings['categories'] << category
+            end
+        when 'create'
+            post.settings['categories'] << params['category'].strip
+        when 'remove'
+            params['categories'].each do |category|
+                post.settings['categories'].delete(category)
+            end
+        end
+        if post.save
+            Commandline.git_add( site.id, post.git_filename , 'Updating categories for post: ' + post.id.shellescape )
+        end
+        erb :'post/categories', :locals => { :site => site, :post => post }
+    end
+
     get '/post/delete/:id' do
         site = Site.get( session[:site_id] )
         post = Post.get( session[:site_id], params['id'] )
