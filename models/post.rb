@@ -46,7 +46,7 @@ class Post
             end
         end
 
-        @content = raw_post.gsub!( /---(.*)---/m, '' )
+        @content = raw_post.gsub!( /---(.*)---/m, '' ).strip
 
         return true
     end
