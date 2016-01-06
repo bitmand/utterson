@@ -113,7 +113,7 @@ class Post
                 categories << category
             end
         end
-        return categories.sort
+        return categories.uniq.sort
     end
 
     def Post.get site_id, post_id
