@@ -137,7 +137,7 @@ class Post
               posts << Post.get( site_id, post_id) unless File.directory? yaml_config
             end
         end
-        return posts
+        return posts.sort {|a,b| b.settings['date'] <=> a.settings['date'] }
     end
 
 end
