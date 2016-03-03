@@ -29,6 +29,10 @@ class Post
         return false unless File.exists? self.filename
         raw_post = File.read( self.filename )
 
+        # Set date from filename here, it may be overridden if
+        # specified in the YAML front matter too
+        @settings['date'] = DateTime.parse(post_id[0..9]).strftime('%F %T')
+
         YAML::load( raw_post ).each do |name, value|
             case name
             when 'category'
