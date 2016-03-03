@@ -19,6 +19,10 @@ class Site
         Utterson.settings.sites_dir + @id + '/_layouts'
     end
 
+    def prod_url
+      config['url'] + config['baseurl']
+    end
+
     def errors
         @error_messages.length > 0
     end

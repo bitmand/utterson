@@ -17,7 +17,7 @@
             <tr>
                 <td><a href="/hyde/select?id=<%= site.id %>"><%= site.id %></a></td>
                 <td><%= site.config['title'] %></td>
-                <td><a href="<%= site.config['url'] %>"><%= site.config['url'] %></a></td>
+                <td><a href="<%= site.prod_url %>"><%= site.prod_url %></a></td>
             </tr>
             <% end %>
         </tbody>
