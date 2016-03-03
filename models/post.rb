@@ -128,8 +128,10 @@ class Post
         posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
         Dir.entries( posts_dir ).reverse.each do |post_id|
-            yaml_config = posts_dir + '/' + post_id
-            posts << Post.get( site_id, post_id) unless File.directory? yaml_config
+            unless post_id =~ /~$/
+              yaml_config = posts_dir + '/' + post_id
+              posts << Post.get( site_id, post_id) unless File.directory? yaml_config
+            end
         end
         return posts
     end
