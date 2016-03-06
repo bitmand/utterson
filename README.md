@@ -13,7 +13,7 @@ If you just want to see what it looks like, there is a bunch of [screenshots][sc
 It's very simple to get started and try Utterson:
 
 ```shell
-git clone git@github.com:gabriel-john/utterson.git
+git clone https://github.com/gabriel-john/utterson.git
 cd utterson
 bundle install --path vendor/bundle
 bundle exec rackup
