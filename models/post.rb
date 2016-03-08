@@ -45,8 +45,10 @@ class Post
                         @settings['categories'] << category.strip
                     end
                 end
+            when 'date'
+                @settings['date'] = DateTime.parse(value.to_s).strftime('%F %T')
             else
-                @settings[ name ] = value
+                @settings[name] = value
             end
         end
 
@@ -131,13 +133,13 @@ class Post
         #        We should have some sort of lazy loading of the blog post content
         posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
-        Dir.entries( posts_dir ).reverse.each do |post_id|
-            unless post_id =~ /~$/
-              yaml_config = posts_dir + '/' + post_id
-              posts << Post.get( site_id, post_id) unless File.directory? yaml_config
-            end
+        Dir.entries(posts_dir).each do |post_id|
+            next if File.directory? posts_dir + '/' + post_id
+            next if post_id =~ /~$/
+            posts << Post.get(site_id, post_id)
         end
         return posts.sort {|a,b| b.settings['date'] <=> a.settings['date'] }
     end
 
 end
+
