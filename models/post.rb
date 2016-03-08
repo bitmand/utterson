@@ -29,6 +29,10 @@ class Post
         return false unless File.exists? self.filename
         raw_post = File.read( self.filename )
 
+        # Set date from filename here, it may be overridden if
+        # specified in the YAML front matter too
+        @settings['date'] = DateTime.parse(post_id[0..9]).strftime('%F %T')
+
         YAML::load( raw_post ).each do |name, value|
             case name
             when 'category'
@@ -128,10 +132,12 @@ class Post
         posts_dir = Utterson.settings.sites_dir + site_id + '/_posts'
         posts = Array.new
         Dir.entries( posts_dir ).reverse.each do |post_id|
-            yaml_config = posts_dir + '/' + post_id
-            posts << Post.get( site_id, post_id) unless File.directory? yaml_config
+            unless post_id =~ /~$/
+              yaml_config = posts_dir + '/' + post_id
+              posts << Post.get( site_id, post_id) unless File.directory? yaml_config
+            end
         end
-        return posts
+        return posts.sort {|a,b| b.settings['date'] <=> a.settings['date'] }
     end
 
 end
