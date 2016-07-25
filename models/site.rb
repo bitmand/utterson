@@ -20,7 +20,7 @@ class Site
     end
 
     def prod_url
-      config['url'] + config['baseurl']
+      config['url'] + ((config['baseurl'] != nil) ? config['baseurl'] : '')
     end
 
     def errors
