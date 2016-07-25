@@ -136,6 +136,7 @@ class Post
         Dir.entries(posts_dir).each do |post_id|
             next if File.directory? posts_dir + '/' + post_id
             next if post_id =~ /~$/
+            next if post_id =~ /^\..+/
             posts << Post.get(site_id, post_id)
         end
         return posts.sort {|a,b| b.settings['date'] <=> a.settings['date'] }
