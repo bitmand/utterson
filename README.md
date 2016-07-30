@@ -2,7 +2,13 @@
 
 Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites. Gabriel John Utterson is a loyal friend of Dr. Jekyll in the story: [Strange Case of Dr Jekyll and Mr Hyde][strange-case]
 
-It is in a **very early state** at this point, please read about the features and the roadmap further down in this document.
+# Development Discontinued
+
+    PLEASE NOTICE!
+    This project is current not in active development.
+    PR's is still accepted and merged.
+
+Active development is moved to a new project called: [Strange Case CMS](https://github.com/bitmand/strange-case). It relies on a database to store data, but still uses [Jekyll](http://jekyllrb.com) to build the static website.
 
 ## Screenshots
 
