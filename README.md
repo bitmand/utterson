@@ -5,10 +5,12 @@ Utterson is your friendly frontend/web editor for [Jekyll][jekyll] sites. Gabrie
 # Development Discontinued
 
     PLEASE NOTICE!
-    This project is current not in active development.
+    This project is currently not in active development.
     PR's is still accepted and merged.
 
 Active development is moved to a new project called: [Strange Case CMS](https://github.com/bitmand/strange-case). It relies on a database to store data, but still uses [Jekyll](http://jekyllrb.com) to build the static website.
+
+I'l also recommending taking a look at [Jekyll Admin](https://github.com/jekyll/jekyll-admin)
 
 ## Screenshots
 
